@@ -53,7 +53,7 @@
 1. Qinglongパネルでサブスクリプションを追加
 
 ```shell
-ql repo https://github.com/leochen-g/ql-juejinhelper.git "ql_" "utils" "sdk"
+ql repo https://github.com/leochen-g/dify-schedule.git "ql_" "utils" "sdk"
 ```
 
 2. パネルメニューの依存関係管理からNodeJsの依存関係として`axios`を追加

@@ -1,0 +1,39 @@
+name: Dify Schedule Workflow
+
+on:
+  workflow_dispatch: # Allows manual triggering
+  schedule:
+    - cron: '0 9 * * *' # Runs at 9:00 UTC (18:00 JST) every day
+
+jobs:
+  run-dify-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Dify Workflow Script
+        run: npm run workflowDify
+        env:
+          DIFY_BASE_URL: ${{ secrets.DIFY_BASE_URL }}
+          DIFY_TOKENS: ${{ secrets.DIFY_TOKENS }}
+          DIFY_INPUTS: ${{ secrets.DIFY_INPUTS }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          DINGDING_WEBHOOK: ${{ secrets.DINGDING_WEBHOOK }}
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          SERVERPUSHKEY: ${{ secrets.SERVERPUSHKEY }}
+          WEIXIN_WEBHOOK: ${{ secrets.WEIXIN_WEBHOOK }}
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          AIBOTK_KEY: ${{ secrets.AIBOTK_KEY }}
+          AIBOTK_ROOM_RECIVER: ${{ secrets.AIBOTK_ROOM_RECIVER }}
+          AIBOTK_CONTACT_RECIVER: ${{ secrets.AIBOTK_CONTACT_RECIVER }}
